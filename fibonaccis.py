@@ -3,8 +3,8 @@ import unittest
 
 def nth_fib(num):
     '''takes a number, num, greater than 0 and returns the numth fibonacci
-     number, where the first two terms of the fibonacci sequence are 0, 1
-    if num is not a valid number or if num is less than 1 it returns the
+     number, where the first two terms of the fibonacci sequence are 0 and 1.
+    If num is not a valid number or if num is less than 1, it returns the
     string 'invalid input'
     '''
     try:
