@@ -2,8 +2,8 @@ import unittest
 
 
 def gen_primes(num):
-    '''takes a number, n, and returns a list of the first n prime numbers
-    if n is less than 1 or not a valid number, it returns the empty list.'''
+    '''takes a number, num, and returns a list of the first n prime numbers
+    if num is less than 1 or not a valid number, it returns the empty list.'''
     try:
         num = int(num)
     except:
