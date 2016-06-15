@@ -19,7 +19,7 @@ class TestNoteAppClass(unittest.TestCase):
                          msg="notes not added correctly")
 
     def test_list(self):
-        sample_out = "Note ID: 0\nNote 0\n\nBy Author Ben K\n"
+        sample_out = "Note ID: 0\nNote 0\n\nBy Author Ben\n"
         self.assertEqual(self.note_app.list(), sample_out,
                          msg="notes not listed correctly")
 
