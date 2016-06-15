@@ -1,2 +1,5 @@
 # Bootcamp-8-Assignments
-Bootcamp VIII object oriented programming assignment
+
+Andela Nairobi Bootcamp VIII assignments
+
+Written in Python
