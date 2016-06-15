@@ -19,14 +19,17 @@ class NotesApplication(object):
         in the notes list'''
         for index, note in enumerate(self.notes):
             args = (index, note, self.author)
-            print "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(args)
+            print "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
 
     def get(self, note_id):
         '''This function takes a note_id which
         refers to the index of the note in the notes
         list and returns the content of that note as a string
         '''
-        return self.notes[note_id]
+        try:
+            return self.notes[note_id]
+        except IndexError:
+            return None
 
     def search(self, search_text):
         '''This function takes a search string search
@@ -35,10 +38,14 @@ class NotesApplication(object):
         for index, note in enumerate(self.notes):
             if search_text in note:
                 args = (search_text, index, note, self.author)
-                print "Showing results for search '{0}'\n\nNote ID: {1}\n{2}\n\nBy Author {3}\n\n".format(args)
+                print "Showing results for search '{0}'\n\nNote ID: {1}\n{2}\n\nBy Author {3}\n\n".format(*args)
 
     def edit(self, note_id, new_content):
         '''This function replaces the content in the
         note at note_id with new_content
         '''
         self.notes[note_id] = new_content
+
+a = NotesApplication("ben")
+a.create("1")
+a.list()
