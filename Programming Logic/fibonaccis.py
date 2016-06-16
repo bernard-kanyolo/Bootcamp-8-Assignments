@@ -1,10 +1,10 @@
-def nth_fib(num):
+def fib_to(n):
     '''takes a  number, num, and returns the list fibonacci sequence from 0 to n
     '''
 
     # validate input
     try:
-        num = int(num)
+        n = int(n)
     except:
         return 'invalid input'
 
@@ -19,9 +19,9 @@ def nth_fib(num):
     # list to hold fib values
     fibs = []
 
-    # create the list
+    # create the list until our fibonacci number >= n
     for fib_num in fib_gen():
-        if fib_num <= num:
+        if fib_num <= n:
             fibs.append(fib_num)
         else:
             break
