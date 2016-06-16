@@ -5,7 +5,10 @@ class NotesApplication(object):
         '''constructor for the Notes Application.
         Takes a string, the author, and initialises a list to
         store all the different notes'''
-        self.author = author
+        if type(author) == str:
+            self.author = author
+        else:
+            self.author = None
         self.notes = []
 
     def create(self, note_content):
@@ -19,7 +22,7 @@ class NotesApplication(object):
         in the notes list'''
         for index, note in enumerate(self.notes):
             args = (index, note, self.author)
-            print "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
+            print ("Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args))
 
     def get(self, note_id):
         '''This function takes a note_id which
@@ -27,25 +30,32 @@ class NotesApplication(object):
         list and returns the content of that note as a string
         '''
         try:
-            return self.notes[note_id]
-        except IndexError:
+            id = int(note_id)
+            return self.notes[id]
+        except:
             return None
 
     def search(self, search_text):
         '''This function takes a search string search
         text and prints all the notes with that text
         '''
+        # print search result header first
+        print ("Showing results for search '{0}'\n\n".format(search_text))
+
         for index, note in enumerate(self.notes):
             if search_text in note:
-                args = (search_text, index, note, self.author)
-                print "Showing results for search '{0}'\n\nNote ID: {1}\n{2}\n\nBy Author {3}\n\n".format(*args)
+                args = (index, note, self.author)
+                print ("Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args))
 
     def edit(self, note_id, new_content):
         '''This function replaces the content in the
         note at note_id with new_content
         '''
-        self.notes[note_id] = new_content
+        try:
+            self.notes[note_id] = new_content
+            return True
+        except IndexError:
+            return False
 
 a = NotesApplication("ben")
-a.create("1")
-a.list()
+print(a.author)
