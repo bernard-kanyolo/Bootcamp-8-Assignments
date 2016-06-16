@@ -5,10 +5,9 @@ class NotesApplication(object):
         '''constructor for the Notes Application.
         Takes a string, the author, and initialises a list to
         store all the different notes'''
+        self.author = None
         if type(author) == str:
             self.author = author
-        else:
-            self.author = None
         self.notes = []
 
     def create(self, note_content):
@@ -20,9 +19,12 @@ class NotesApplication(object):
     def list(self):
         '''This function lists out each of the notes
         in the notes list'''
+        out = ""
         for index, note in enumerate(self.notes):
             args = (index, note, self.author)
-            print ("Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args))
+            out += "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
+
+        return out
 
     def get(self, note_id):
         '''This function takes a note_id which
@@ -40,12 +42,14 @@ class NotesApplication(object):
         text and prints all the notes with that text
         '''
         # print search result header first
-        print ("Showing results for search '{0}'\n\n".format(search_text))
+        out = "Showing results for search '{0}'\n\n".format(search_text)
 
         for index, note in enumerate(self.notes):
             if search_text in note:
                 args = (index, note, self.author)
-                print ("Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args))
+                out += "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
+
+        return out
 
     def edit(self, note_id, new_content):
         '''This function replaces the content in the
@@ -56,6 +60,3 @@ class NotesApplication(object):
             return True
         except IndexError:
             return False
-
-a = NotesApplication("ben")
-print(a.author)

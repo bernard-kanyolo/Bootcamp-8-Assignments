@@ -81,12 +81,15 @@ class TestNoteAppClass(unittest.TestCase):
                              msg="incorrect notes attribute after create")
 
     def test_list(self):
-        """Test print outs of the lists
+        """Test the listing of notes
         """
         note_app = NotesApplication("Ben")
         note_app.create("Note 0")
+        args = (0, note_app.notes[0], note_app.author)
+        expected_out = "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
 
-        note_app.list()
+        self.assertEqual(note_app.list(), expected_out,
+                         msg="Listing of notes incorrect")
 
     def test_get_with_valid_index(self):
         """test normal get behaviour
@@ -116,11 +119,15 @@ class TestNoteAppClass(unittest.TestCase):
                          msg="string index should return None")
 
     def test_search(self):
-        """Test if search prints the right output"""
+        """Test if search returns the right output"""
         note_app = NotesApplication("Ben")
         note_app.create("Note 0")
+        out = "Showing results for search '{0}'\n\n".format("Note")
+        args = (0, note_app.notes[0], note_app.author)
+        out += "Note ID: {0}\n{1}\n\nBy Author {2}\n\n".format(*args)
 
-        note_app.search("Note")
+        self.assertEqual(note_app.search("Note"), out,
+                         msg="searching for a note returns incorrect value")
 
     def test_edit_with_valid_parameters(self):
         """test for normal edit behaviour
