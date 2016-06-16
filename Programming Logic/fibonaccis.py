@@ -19,9 +19,9 @@ def fib_to(n):
     # list to hold fib values
     fibs = []
 
-    # create the list until our fibonacci number >= n
-    for fib_num in fib_gen():
-        if fib_num <= n:
+    # create the list until our fibonacci numbers >= n
+    for index, fib_num in enumerate(fib_gen()):
+        if index < n:
             fibs.append(fib_num)
         else:
             break
