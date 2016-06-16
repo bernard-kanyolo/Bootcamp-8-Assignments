@@ -1,35 +1,29 @@
-
 def nth_fib(num):
-    '''takes a number, num, greater than 0 and returns the numth fibonacci
-     number, where the first two terms of the fibonacci sequence are 0 and 1.
-    If num is not a valid number or if num is less than 1, it returns the
-    string 'invalid input'
+    '''takes a  number, num, and returns the list fibonacci sequence from 0 to n
     '''
+
+    # validate input
     try:
         num = int(num)
     except:
         return 'invalid input'
 
-    # setting up the first two values
-    if num < 1:
-        return 'invalid input'
-    elif num == 1:
-        return 0
-    elif num == 2:
-        return 1
+    # create fibonacci generator
+    def fib_gen():
+        '''inner generetor for fib numbers'''
+        a, b = 0, 1
+        while True:
+            yield a
+            a, b = b, a + b
 
-    # prepare to loop in order to find values > 2
-    fibs = [0, 1]
-    num -= 2
-    last_index = len(fibs) - 1
+    # list to hold fib values
+    fibs = []
 
-    # loop until num is 0, each time calculating and appending the next term
-    while num:
-        last = fibs[last_index]
-        second_last = fibs[last_index - 1]
+    # create the list
+    for fib_num in fib_gen():
+        if fib_num <= num:
+            fibs.append(fib_num)
+        else:
+            break
 
-        fibs.append(last + second_last)
-        last_index, num = last_index + 1, num - 1
-
-    # the last fibonacci term in our list is the answer
-    return fibs[last_index]
+    return fibs
